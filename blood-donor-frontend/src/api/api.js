@@ -1,6 +1,7 @@
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_Backend;
 
-const API = axios.create({ baseURL: 'http://localhost:5000/api' });
+const API = axios.create({ baseURL: `${apiUrl}/api` });
 
 // Donor APIs
 export const fetchDonors = () => API.get('/donors');
