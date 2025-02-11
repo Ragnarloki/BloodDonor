@@ -15,6 +15,7 @@ const Register = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const apiUrl = import.meta.env.VITE_API_Backend;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +29,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/users/signup', formData);
+      const response = await axios.post(`${apiUrl}api/users/signup`, formData);
       setSuccessMessage('Registration successful! Please log in.');
       setFormData({ name: '', email: '', password: '' });
     } catch (error) {
@@ -39,7 +40,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center  h-[670px] bg-gray-100">
       <form onSubmit={handleSubmit} className="p-6 bg-white rounded shadow w-96">
         <h1 className="text-2xl font-bold mb-6">Register</h1>
         {successMessage && <p className="text-green-500 mb-4">{successMessage}</p>}

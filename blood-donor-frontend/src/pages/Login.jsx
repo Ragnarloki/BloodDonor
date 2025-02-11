@@ -13,11 +13,12 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const apiUrl = import.meta.env.VITE_API_Backend;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', formData);
+      const response = await axios.post(`${apiUrl}api/users/login`, formData);
       // Assuming you get a token in the response
       localStorage.setItem('token', response.data.token);
       setErrorMessage('');
@@ -28,8 +29,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="p-6 bg-white rounded shadow w-96">
+    <div className='bg-gray-100 '>
+    <div className="flex justify-center items-center h-[670px] bg-gray-100">
+      <form onSubmit={handleSubmit} className="p-6  bg-white rounded shadow w-96">
         <h1 className="text-2xl font-bold mb-6">Login</h1>
         {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
         <div className="mb-4">
@@ -59,7 +61,8 @@ const Login = () => {
         </button>
       </form>
     </div>
-  );
+    </div>
+      );
 };
 
 export default Login;
