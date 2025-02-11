@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 function ChatBot() {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const sendMessage = async () => {
         if (!input.trim()) return;
@@ -14,7 +15,7 @@ function ChatBot() {
         setInput("");
 
         try {
-            const { data } = await axios.post("http://localhost:5001/chat", { message: input });
+            const { data } = await axios.post(`${apiUrl}/chat`, { message: input });
             setMessages([...newMessages, { sender: "bot", text: data.reply }]);
         } catch (error) {
             console.error(error);
