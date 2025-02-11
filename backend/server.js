@@ -9,9 +9,7 @@ const app = express();
 const cors = require('cors');
 
 // Allow requests from the frontend
-app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend URL
-}));
+app.use(cors());
 // Middleware
 app.use(express.json());
 
