@@ -7,9 +7,12 @@ const userRoutes = require('./rotues/userRoutes');
 dotenv.config();
 const app = express();
 const cors = require('cors');
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
+}));
 
-// Allow requests from the frontend
-app.use(cors());
 // Middleware
 app.use(express.json());
 
