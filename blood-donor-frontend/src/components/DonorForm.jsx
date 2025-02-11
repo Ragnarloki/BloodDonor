@@ -20,9 +20,15 @@ const DonorForm = ({ onDonorCreated }) => {
     try {
       const newDonor = await createDonor(formData);
       onDonorCreated(newDonor.data);
-      setFormData({ name: '', bloodType: '', contact: '', location: '', availability: true });
+      
+      // Show success alert
+      alert('Donor registered successfully!');
+
+      // Refresh the page
+      window.location.reload();
     } catch (err) {
       console.error(err);
+      alert('Failed to register donor. Please try again.');
     }
   };
 
