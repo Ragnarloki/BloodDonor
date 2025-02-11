@@ -5,12 +5,13 @@ const Donors = () => {
   const [donors, setDonors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredDonors, setFilteredDonors] = useState([]);
+  const apiUrl = import.meta.env.VITE_API_Backend;
 
   // Fetch donors from the backend
   useEffect(() => {
     const fetchDonors = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/donors');
+        const response = await axios.get(`${apiUrl}/api/donors`);
         setDonors(response.data);
         setFilteredDonors(response.data); // Initially set filtered list to all donors
       } catch (error) {
