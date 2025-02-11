@@ -12,20 +12,29 @@ const DonorForm = ({ onDonorCreated }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    setFormData({
+      ...formData,
+      [name]: name === "availability" ? value === "true" : value, // Convert availability to boolean
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newDonor = await createDonor(formData);
-      onDonorCreated(newDonor.data);
+      const response = await createDonor(formData);
       
-      // Show success alert
-      alert('Donor registered successfully!');
+      if (response && response.data) {
+        onDonorCreated(response.data);
 
-      // Refresh the page
-      window.location.reload();
+        // Show success alert only if the donor was successfully created
+        alert('Donor registered successfully!');
+
+        // Refresh the page
+        window.location.reload();
+      } else {
+        throw new Error("Invalid response from server");
+      }
     } catch (err) {
       console.error(err);
       alert('Failed to register donor. Please try again.');
@@ -87,8 +96,8 @@ const DonorForm = ({ onDonorCreated }) => {
           onChange={handleChange}
           className="w-full border rounded p-2"
         >
-          <option value={true}>Available</option>
-          <option value={false}>Not Available</option>
+          <option value="true">Available</option>
+          <option value="false">Not Available</option>
         </select>
       </div>
       <button type="submit" className="bg-red-500 text-white py-2 px-4 rounded">Submit</button>
