@@ -16,7 +16,7 @@ app.post("/chat", async (req, res) => {
 
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-        const result = await model.generateContent(message+"the current blood donation page and the output only need to say about the blood donation related topics if they ask anything else then tell them to not ask anything else then blood donation related topics and the output needs to be in short not more then 4 lines");
+        const result = await model.generateContent(message+"the current blood donation page and the output only need to say about the blood donation related topics if they ask anything else then tell them to not ask anything else then blood donation related topics and the output needs to be in short not more then 10 lines");
         const response = result.response.text();
 
         res.json({ reply: response });
