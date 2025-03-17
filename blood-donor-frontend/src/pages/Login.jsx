@@ -91,7 +91,7 @@ const Login = () => {
                         <label className="block text-gray-700 text-sm mb-2">Password</label>
                         <div className="relative">
                             <input
-                                type={showPassword ? "text" : "password"}
+                                type="password"
                                 placeholder="Enter your password"
                                 className="w-full p-3 border border-gray-300 rounded focus:outline-blue-500 pr-10"
                                 value={formData.password}
