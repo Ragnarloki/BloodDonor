@@ -55,7 +55,7 @@ const Login = () => {
             <label className="block text-gray-700 text-sm mb-2">Password</label>
             <div className="relative">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
                 className="w-full p-3 border border-gray-300 rounded focus:outline-blue-500 pr-10"
@@ -66,9 +66,9 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-3 top-3 text-gray-500"
+                className="absolute right-3 top-3 text-gray-500"
               >
-                {showPassword ? '🙈' : '👁️'}
+                {showPassword ? "👁️" : "👁️‍🗨️"}
               </button>
             </div>
           </div>
